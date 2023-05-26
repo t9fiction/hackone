@@ -3,7 +3,7 @@ import React from "react";
 
 const Promotions = () => {
   return (
-    <div className="bg-white">
+    <div className="bg-white" id="promotions">
       <div className="container mx-auto px-16 py-8">
         <h3 className="uppercase font-bold text-sm text-[#1862F5] text-center">
           Promotions
@@ -64,13 +64,13 @@ const Promotions = () => {
                 <p className="text-lg line-through">$225.00 </p>
                 <p className="text-lg font-bold">$190.00</p>
               </div>
-              <div className="items-center justify-center  flex">
+              <div className="items-center justify-center overflow-clip flex">
                 <Image
                   src={"/images/promotions/event3.webp"}
                   alt="promotion2"
-                  width={250}
-                  height={250}
-                  className="overflow-hidden"
+                  width={245}
+                  height={245}
+                  className=""
                 />
               </div>
             </div>
