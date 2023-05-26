@@ -1,24 +1,49 @@
 {
   "resources": [
     {
-      "title": "Find me on Mastodon",
-      "link": "https://indieweb.social/@kendalmintcode",
-      "imageUrl": "/images/products/1.png"
+      "title": "Brushed Raglan SweatShirt",
+      "imageUrl": "/images/products/1.png",
+      "price": "$195"
     },
     {
-      "title": "Welcome to Ark Labs",
-      "link": "https://ark-labs.co.uk",
-      "imageUrl": "/images/products/1.png"
+      "title": "Brushed Raglan SweatShirt",
+      "imageUrl": "/images/products/2.png",
+      "price": "$545"
     },
     {
-      "title": "Some sort of third title",
-      "link": "https://indieweb.social/@kendalmintcode",
-      "imageUrl": "/images/products/1.png"
+      "title": "Brushed Raglan SweatShirt",
+      "imageUrl": "/images/products/3.png",
+      "price": "$175"
     },
     {
-      "title": "Super item number the last",
-      "link": "https://indieweb.social/@kendalmintcode",
-      "imageUrl": "/images/products/1.png"
+      "title": "Brushed Raglan SweatShirt",
+      "imageUrl": "/images/products/5.png",
+      "price": "$155"
+    },
+    {
+      "title": "Brushed Raglan SweatShirt",
+      "imageUrl": "/images/products/7.png",
+      "price": "$235"
+    },
+    {
+      "title": "Brushed Raglan SweatShirt",
+      "imageUrl": "/images/products/8.png",
+      "price": "$555"
+    },
+    {
+      "title": "Brushed Raglan SweatShirt",
+      "imageUrl": "/images/products/9.png",
+      "price": "$290"
+    },
+    {
+      "title": "Brushed Raglan SweatShirt",
+      "imageUrl": "/images/products/10.png",
+      "price": "$320"
+    },
+    {
+      "title": "Brushed Raglan SweatShirt",
+      "imageUrl": "/images/products/11.png",
+      "price": "$180"
     }
   ]
 }
