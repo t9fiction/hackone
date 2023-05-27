@@ -30,9 +30,22 @@ const project = {
       ],
     },
     {
-      name: "url",
-      title: "URL",
-      type: "url",
+      name: "price",
+      title: "Price",
+      type: "number",
+    },
+    {
+      name: "category",
+      title: "Category",
+      type: "string",
+      initialValue: 'men',
+      options:{
+        list:[
+          {title:"Men", value:'men'},
+          {title:"Women", value:'women'},
+          {title:"Kids", value:'kids'},
+        ]
+      }
     },
     {
       name: "content",
