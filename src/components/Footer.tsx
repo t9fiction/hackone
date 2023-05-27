@@ -80,16 +80,27 @@ const Footer = () => {
           <div className="w-full md:w-3/4 flex md:flex-row flex-col space-y-8 md:space-y-0 mx-auto md:justify-between ">
             <div className="flex flex-row w-full mx-auto">
               <div className="w-1/2 ">
-                <p className="font-medium text-gray-900">Services</p>
+                <p className="font-medium text-gray-900">Branches</p>
 
                 <nav aria-label="Footer Navigation - Services" className="mt-6">
                   <ul className="space-y-4 text-sm">
+                    
                     <li>
                       <a
                         href="#"
                         className="text-gray-700 transition hover:opacity-75"
                       >
-                        1on1 Coaching
+                        Lahore
+                      </a>
+                    </li>
+
+                    
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-700 transition hover:opacity-75"
+                      >
+                        Karachi
                       </a>
                     </li>
 
@@ -98,34 +109,7 @@ const Footer = () => {
                         href="#"
                         className="text-gray-700 transition hover:opacity-75"
                       >
-                        Company Review
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-gray-700 transition hover:opacity-75"
-                      >
-                        Accounts Review
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-gray-700 transition hover:opacity-75"
-                      >
-                        HR Consulting
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="text-gray-700 transition hover:opacity-75"
-                      >
-                        SEO Optimisation
+                        Islamabad
                       </a>
                     </li>
                   </ul>
