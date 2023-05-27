@@ -10,7 +10,7 @@ import { RxCross1 } from "react-icons/rx";
 const Navbar = () => {
   const [nav, setnav] = useState(true);
 
-  const handleClick = () => !nav;
+  const handleClick = () => setnav(!nav);
   return (
     <header className="bg-white text-primary">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-4 flex items-center h-24">
