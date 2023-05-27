@@ -51,13 +51,13 @@ const Navbar = () => {
 
         <div className="flex lg:hidden ml-auto">
           {nav ? (
-            <button onClick={ handleClick}>
+            <div onClick={handleClick}>
               <HiOutlineMenu size={35} />
-            </button>
+            </div>
           ) : (
-            <button onClick={handleClick}>
+            <div onClick={handleClick}>
               <RxCross1 size={35} />
-            </button>
+            </div>
           )}
         </div>
       </div>
