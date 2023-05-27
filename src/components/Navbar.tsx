@@ -61,6 +61,14 @@ const Navbar = () => {
           )}
         </div>
       </div>
+      {!nav && (
+        <div className="flex flex-col mx-auto px-4 space-y-8 bg-gray-300 py-8 rounded-md text-black  justify-center lg:hidden absolute top-20 right-24">
+          <Link href={""} className="hover:text-white" onClick={handleClick}>Female</Link>
+          <Link href={""} className="hover:text-white" onClick={handleClick}>Male</Link>
+          <Link href={""} className="hover:text-white" onClick={handleClick}>Kids</Link>
+          <Link href={""} className="hover:text-white" onClick={handleClick}>All Products</Link>
+        </div>
+      )}
 
       {/* <hr /> */}
     </header>
