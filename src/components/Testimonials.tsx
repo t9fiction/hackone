@@ -56,12 +56,17 @@ const Testimonials = () => {
                 alt=""
               />
             </div>
-            <p className="text-primary  w-96 text-justify">
-              This piece is ethically crafted in our small family-owned workshop
-              in Peru with unmatched attention to detail and care. The Natural
-              color is the actual natural color of the fiber, undyed and 100%
-              traceable.
-            </p>
+            <div className="w-96 md:space-y-2">
+              <p className="text-primary  text-justify">
+                This piece is ethically crafted in our small family-owned
+                workshop in Peru with unmatched attention to detail and care.
+                The Natural color is the actual natural color of the fiber,
+                undyed and 100% traceable.
+              </p>
+              <button className=" bg-primary shadow-xl  text-white border-spacing-1 flex flex-row items-center py-2 px-4">
+                See all Products
+              </button>
+            </div>
           </div>
         </div>
       </div>

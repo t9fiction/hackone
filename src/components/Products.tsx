@@ -14,9 +14,32 @@ const Products = ({ children }: any) => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
+    responsive: [
+      {
+        breakpoint: 1024, // lg and above
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 768, // sm
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480, // mobile
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div className="bg-white" id="products">
@@ -30,9 +53,9 @@ const Products = ({ children }: any) => {
 
         {/* Corousel */}
         <Slider {...settings}>
-          {data.resources.map((resource, index)=>(
+          {data.resources.map((resource, index) => (
             <>
-            <Card resource={resource} />
+              <Card resource={resource} />
             </>
           ))}
         </Slider>
