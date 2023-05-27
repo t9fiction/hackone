@@ -1,10 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import React from "react";
 
 const Testimonials = () => {
   return (
     <div className="bg-white" id="products">
-      <div className="container mx-auto px-4 sm:px-8 md:px-12 lg:px-16 py-8">
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8">
         <h2 className="text-primary text-center py-2 sm:py-4 md:py-6 lg:py-8 font-bold text-2xl sm:text-3xl md:text-4xl mx-auto">
           Unique and Authentic <br /> Vintage Designer Jewellery
         </h2>
@@ -47,16 +48,15 @@ const Testimonials = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row space-x-4 items-center">
-            <div className="px-4">
-              <Image
+          <div className="flex flex-col px-6 sm:px-8 md:px-12 lg:px-16 md:flex-row space-x-4 items-center">
+            <div className="px-1 w-full md:w-60">
+              <img
                 src={"/images/products/7.png"}
-                width={600}
-                height={600}
                 alt=""
+                className=""
               />
             </div>
-            <div className="w-96 md:space-y-2">
+            <div className="w-60 md:space-y-2">
               <p className="text-primary  text-justify">
                 This piece is ethically crafted in our small family-owned
                 workshop in Peru with unmatched attention to detail and care.

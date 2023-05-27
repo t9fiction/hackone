@@ -5,7 +5,7 @@ import React from "react";
 const Promotions = () => {
   return (
     <div className="bg-white" id="promotions">
-      <div className="container mx-auto px-4 sm:px-8 md:px-12 lg:px-16 py-8">
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8">
         <h3 className="uppercase font-bold text-sm text-[#1862F5] text-center">
           Promotions
         </h3>

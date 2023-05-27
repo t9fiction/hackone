@@ -13,7 +13,7 @@ const Navbar = () => {
   const handleClick = () => !nav;
   return (
     <header className="bg-white text-primary">
-      <div className="container mx-auto px-16 py-4 flex items-center h-24">
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-4 flex items-center h-24">
         {/* Logo */}
         <div className="mr-auto flex-shrink-0">
           <Image

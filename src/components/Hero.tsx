@@ -5,7 +5,7 @@ import { BsCart4 } from "react-icons/bs";
 const Hero = () => {
   return (
     <div className="bg-white">
-      <div className="container mx-auto px-16 py-20">
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-20">
         <div className="flex flex-row">
           <div className="flex flex-col lg:w-2/5 w-full">
             <div className="bg-[#e1edff] w-28 px-4 py-2 rounded-md text-[#2B00FF] font-semibold">

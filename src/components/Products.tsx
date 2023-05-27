@@ -43,7 +43,7 @@ const Products = ({ children }: any) => {
 
   return (
     <div className="bg-white" id="products">
-      <div className="container mx-auto px-16 py-8">
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8">
         <h3 className="uppercase font-bold text-sm text-[#1862F5] text-center">
           Products
         </h3>
