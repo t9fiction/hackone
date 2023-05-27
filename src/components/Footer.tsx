@@ -3,6 +3,7 @@ import React from "react";
 import { FiFacebook } from "react-icons/fi";
 import { TfiTwitterAlt } from "react-icons/tfi";
 import { AiFillGithub, AiOutlineLinkedin } from "react-icons/ai";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -11,13 +12,15 @@ const Footer = () => {
         <div className="flex flex-col-reverse md:flex-row md:space-x-8 pb-8 w-full justify-between">
           <div className="flex flex-row md:flex-col w-full md:w-1/4 items-center justify-around py-6 md:py-0">
             <div className="">
-              <Image
-                className=""
-                width={200}
-                height={200}
-                src="/images/Logo.webp"
-                alt=""
-              />
+              <Link href={"/"}>
+                <Image
+                  className=""
+                  width={200}
+                  height={200}
+                  src="/images/Logo.webp"
+                  alt=""
+                />
+              </Link>
             </div>
 
             <ul className="flex gap-6 md:mt-2">

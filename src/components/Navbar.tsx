@@ -16,20 +16,22 @@ const Navbar = () => {
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-4 flex items-center h-24">
         {/* Logo */}
         <div className="mr-auto flex-shrink-0">
-          <Image
-            className=""
-            width={140}
-            height={140}
-            src="/images/Logo.webp"
-            alt=""
-          />
+          <Link href={"/"}>
+            <Image
+              className=""
+              width={140}
+              height={140}
+              src="/images/Logo.webp"
+              alt=""
+            />
+          </Link>
         </div>
 
         <div className=" mx-auto px-4 py-1 items-center space-x-8 lg:flex hidden">
-          <Link href={""}>Female</Link>
-          <Link href={""}>Male</Link>
-          <Link href={""}>Kids</Link>
-          <Link href={""}>All Products</Link>
+          <Link href={"/female"}>Female</Link>
+          <Link href={"/male"}>Male</Link>
+          <Link href={"/kids"}>Kids</Link>
+          <Link href={"/all"}>All Products</Link>
         </div>
 
         <div className="lg:flex hidden mx-auto items-center space-x-2 bg-white py-1 px-2 rounded-md border-gray-100 border">
@@ -63,10 +65,18 @@ const Navbar = () => {
       </div>
       {!nav && (
         <div className="flex flex-col mx-auto px-4 space-y-8 bg-gray-300 py-8 rounded-md text-black  justify-center lg:hidden absolute top-20 right-24">
-          <Link href={""} className="hover:text-white" onClick={handleClick}>Female</Link>
-          <Link href={""} className="hover:text-white" onClick={handleClick}>Male</Link>
-          <Link href={""} className="hover:text-white" onClick={handleClick}>Kids</Link>
-          <Link href={""} className="hover:text-white" onClick={handleClick}>All Products</Link>
+          <Link href={"/female"} className="hover:text-white" onClick={handleClick}>
+            Female
+          </Link>
+          <Link href={"/male"} className="hover:text-white" onClick={handleClick}>
+            Male
+          </Link>
+          <Link href={"/kids"} className="hover:text-white" onClick={handleClick}>
+            Kids
+          </Link>
+          <Link href={"/all"} className="hover:text-white" onClick={handleClick}>
+            All Products
+          </Link>
         </div>
       )}
 
