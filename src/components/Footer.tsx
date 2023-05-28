@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { FiFacebook } from "react-icons/fi";
-import { TfiTwitterAlt } from "react-icons/tfi";
+import { RxResume } from "react-icons/rx";
 import { AiFillGithub, AiOutlineLinkedin } from "react-icons/ai";
 import Link from "next/link";
 
@@ -26,7 +26,7 @@ const Footer = () => {
             <ul className="flex gap-6 md:mt-2">
               <li>
                 <a
-                  href="/"
+                  href="https://www.facebook.com/a4illusionist"
                   rel="noreferrer"
                   target="_blank"
                   className="text-gray-700 transition hover:opacity-75"
@@ -39,20 +39,20 @@ const Footer = () => {
 
               <li>
                 <a
-                  href="/"
+                  href="https://www.sohail-ishaque.com/"
                   rel="noreferrer"
                   target="_blank"
                   className="text-gray-700 transition hover:opacity-75"
                 >
-                  <span className="sr-only">Twitter</span>
+                  <span className="sr-only">Portfolio</span>
 
-                  <TfiTwitterAlt size={24} />
+                  <RxResume size={24} />
                 </a>
               </li>
 
               <li>
                 <a
-                  href="/"
+                  href="https://github.com/t9fiction"
                   rel="noreferrer"
                   target="_blank"
                   className="text-gray-700 transition hover:opacity-75"
@@ -64,7 +64,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/"
+                  href="https://www.linkedin.com/in/sohail-ishaque/"
                   rel="noreferrer"
                   target="_blank"
                   className="text-gray-700 transition hover:opacity-75"
