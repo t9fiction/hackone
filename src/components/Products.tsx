@@ -2,12 +2,21 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import Card from "./Card";
-import data from "./data.json";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { client } from "../../sanity/lib/client";
 
-const Products = ({ children }: any) => {
+export const getData = async () => {
+  const response = await client.fetch(
+    `*[_type=="product" && special==true]`
+  );
+  return response;
+};
+
+
+const Products = async () => {
+  const data = await getData();
   const settings = {
     dots: true,
     infinite: true,
@@ -53,9 +62,9 @@ const Products = ({ children }: any) => {
 
         {/* Corousel */}
         <Slider {...settings}>
-          {data.resources.map((resource, index) => (
+          {data.map((e:any) => (
             <>
-              <Card resource={resource} />
+              <Card resource={e} />
             </>
           ))}
         </Slider>

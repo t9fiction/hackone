@@ -8,14 +8,14 @@ const product = {
       title: "Name",
       type: "string",
     },
-    {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "category",
-      },
-    },
+    // {
+    //   name: "slug",
+    //   title: "Slug",
+    //   type: "slug",
+    //   options: {
+    //     source: "category",
+    //   },
+    // },
     {
       name: "image",
       title: "Image",
