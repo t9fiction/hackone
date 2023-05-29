@@ -1,6 +1,6 @@
-const project = {
-  name: "project",
-  title: "Projects",
+const product = {
+  name: "product",
+  title: "Products",
   type: "document",
   fields: [
     {
@@ -13,7 +13,7 @@ const project = {
       title: "Slug",
       type: "slug",
       options: {
-        source: "name",
+        source: "category",
       },
     },
     {
@@ -28,6 +28,11 @@ const project = {
           type: "string",
         },
       ],
+    },
+    {
+      name: "special",
+      title: "Special",
+      type: "boolean",
     },
     {
       name: "price",
@@ -55,4 +60,4 @@ const project = {
     },
   ],
 };
-export default project;
+export default product;

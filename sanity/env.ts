@@ -13,6 +13,10 @@ export const projectId = assertValue(
 
 export const useCdn = false
 
+export const apikey = assertValue(
+  process.env.NEXT_PUBLIC_API_Token,'Missing environment variable: API Key'
+)
+
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
     throw new Error(errorMessage)
