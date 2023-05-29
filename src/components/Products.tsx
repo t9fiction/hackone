@@ -48,7 +48,6 @@ const Products = async () => {
     ],
   };
 
-  console.log(data);
 
   return (
     <div className="bg-white" id="products">
@@ -62,7 +61,7 @@ const Products = async () => {
 
         {/* Corousel */}
         <Slider {...settings}>
-          {data.map((e:any) => (
+          {data.map((e:any,index:any) => (
             <>
               <Card resource={e} />
             </>
