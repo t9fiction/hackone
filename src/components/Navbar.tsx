@@ -32,7 +32,7 @@ const Navbar = () => {
           <Link href={"/male"}>Male</Link>
           <Link href={"/kids"}>Kids</Link>
           <Link href={"/all"}>All Products</Link>
-          <Link href={"/studio"}>Sanity</Link>
+          {/* <Link href={"/studio"}>Sanity</Link> */}
         </div>
 
         <div className="lg:flex hidden mx-auto items-center space-x-2 bg-white py-1 px-2 rounded-md border-gray-100 border">
