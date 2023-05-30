@@ -4,10 +4,11 @@ export type Product = {
   _id: string;
   _createdAt: Date;
   name: string;
+  slug: string;
   image: string;
   special: boolean;
   price: number;
   category: string;
   content: PortableTextBlock[];
-  alt:string;
+  alt: string;
 };
