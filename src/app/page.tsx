@@ -10,6 +10,7 @@ export default function Home() {
     <>
       <Hero />
       <Promotions />
+      {/* @ts-expect-error Server Component */}
       <Products />
       <Testimonials />
       <Newsletter />
