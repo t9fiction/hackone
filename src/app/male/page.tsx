@@ -2,6 +2,7 @@
 import React from "react";
 import { urlFor } from "@/functions/allfunction";
 import { client } from "../../../sanity/lib/client";
+import Link from "next/link";
 
 const getData = async () => {
   const response = await client.fetch(`*[_type=="product" && category=="men"]`);
@@ -16,11 +17,13 @@ const Home = async () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data.map((e: any) => (
             <div key={e.id} className="py-8 px-4 ">
-              <img
-                alt={e.image.alt}
-                src={urlFor(e.image).url()}
-                className="rounded-md h-60"
-              />
+              <Link href={`/products/${e.name}`}>
+                <img
+                  alt={e.image.alt}
+                  src={urlFor(e.image).url()}
+                  className="rounded-md h-60"
+                />
+              </Link>
               <div className="text-lg">{e.name}</div>
               <p className="text-lg font-bold">Rs: {e.price}/-</p>
             </div>
