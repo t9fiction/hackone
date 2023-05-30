@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { client } from "../../sanity/lib/client";
+import { Product } from "../../types/Product";
 
 export const getData = async () => {
   const response = await client.fetch(
@@ -61,8 +62,8 @@ const Products = async () => {
 
         {/* Corousel */}
         <Slider {...settings}>
-          {data.map((e:any) => (
-            <div key={e.id} className="px-4">
+          {data.map((e:Product) => (
+            <div key={e._id} className="px-4">
               <Card resource={e} />
             </div>
           ))}
