@@ -18,7 +18,7 @@ const Home = async () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data.map((e: any) => (
             <div key={e.id} className="py-8 px-4">
-              <Link href={`/products/${e.slug}`}>
+              <Link href={`/products/${e.name}`}>
               <img
                 height={300}
                 alt={e.image.alt}
