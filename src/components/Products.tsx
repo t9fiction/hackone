@@ -64,7 +64,7 @@ const Products = async () => {
         <Slider {...settings}>
           {data.map((e:Product) => (
             <div key={e._id} className="px-4">
-              <Card resource={e} />
+              <Card product={e} />
             </div>
           ))}
         </Slider>

@@ -13,7 +13,7 @@ const product = {
     //   title: "Slug",
     //   type: "slug",
     //   options: {
-    //     source: "category",
+    //     source: "name",
     //   },
     // },
     {

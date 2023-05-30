@@ -3,6 +3,7 @@ import React from "react";
 import { client } from "../../../sanity/lib/client";
 import { urlFor } from "@/functions/allfunction";
 import { Product } from "../../../types/Product";
+import Link from "next/link";
 
 const getData = async () => {
   const response = await client.fetch(
@@ -29,12 +30,14 @@ const Home = async () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {data.map((e: Product) => (
             <div key={e._id} className="py-8 px-4 ">
+              <Link href={`/products/${e.name}`}>
               <img
                 height={300}
                 alt={e.alt}
                 src={urlFor(e.image).url()}
                 className="rounded-md h-60"
-              />
+                />
+                </Link>
               <div className="text-lg">{e.name}</div>
               <p className="text-lg font-bold">Rs: {e.price}/-</p>
             </div>
