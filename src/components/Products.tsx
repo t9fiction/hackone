@@ -61,7 +61,7 @@ const Products = async () => {
 
         {/* Corousel */}
         <Slider {...settings}>
-          {data.map((e:any,index:any) => (
+          {data.map((e:any) => (
             <>
               <Card resource={e} />
             </>
