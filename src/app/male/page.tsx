@@ -25,7 +25,7 @@ const Home = async () => {
                 />
               </Link>
               <div className="text-lg">{e.name}</div>
-              <p className="text-lg font-bold">Rs: {e.price}/-</p>
+              <p className="text-lg font-bold">$ {e.price}/-</p>
             </div>
           ))}
         </div>

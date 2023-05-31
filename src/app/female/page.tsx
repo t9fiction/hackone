@@ -28,18 +28,18 @@ const Home = async () => {
     <div className="bg-white">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 ">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {data.map((e: Product) => (
-            <div key={e._id} className="py-8 px-4 ">
-              <Link href={`/products/${e.name}`}>
+          {data.map((product: Product) => (
+            <div key={product._id} className="py-8 px-4 ">
+              <Link href={`/products/${product.name}`}>
               <img
                 height={300}
-                alt={e.alt}
-                src={urlFor(e.image).url()}
+                alt={product.alt}
+                src={urlFor(product.image).url()}
                 className="rounded-md h-60"
                 />
                 </Link>
-              <div className="text-lg">{e.name}</div>
-              <p className="text-lg font-bold">Rs: {e.price}/-</p>
+              <div className="text-lg">{product.name}</div>
+              <p className="text-lg font-bold">$ {product.price}/-</p>
             </div>
           ))}
         </div>
