@@ -13,14 +13,16 @@ export const GET = async (request: NextRequest) => {
   }
 };
 
-export const POST = async (request: NextRequest) => {
+export const POST = async (request: Request) => {
   const req = await request.json();
   const uid = uuid();
 
+
   //Saving the cookies as uid in the browser of the user
   const setCookies = cookies();
+  const user_id = cookies().get("user_id")
 
-  if (!cookies().has("user_id")) {
+  if (!user_id) {
     setCookies.set("user_id", uid);
   }
 
@@ -29,7 +31,7 @@ export const POST = async (request: NextRequest) => {
       product_id: req.product_id,
       quantity: 1,
       user_id: cookies().get("user_id")?.value as string,
-    });
+    }).returning();
     return NextResponse.json({ res });
   } catch (error) {
     console.log(error);

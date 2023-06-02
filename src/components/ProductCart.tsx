@@ -1,14 +1,29 @@
-'use client'
+"use client";
 /* eslint-disable @next/next/no-img-element */
 import React, { FC } from "react";
 import { urlFor } from "@/functions/allfunction";
 import Link from "next/link";
 
-const ProductCart: FC<any> = ({product}) => {
-    console.log(product,"product")
-    const handleAddToCart = () => {
-        
+const ProductCart: FC<{ product: any }> = ({ product }) => {
+
+  const handleAddToCart = async () => {
+    try {
+      const res = await fetch("/api/cart", {
+        method: "POST",
+        body: JSON.stringify({
+          product_id: product._id,
+        }),
+      });
+
+      console.log(res,"res")
+  
+      const result = await res.json();
+      console.log(result);
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
     }
+  };
+
   return (
     <>
       <Link href={`/products/${product.name}`}>
