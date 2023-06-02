@@ -28,6 +28,7 @@ const Home = async () => {
               </Link>
               <div className="text-lg">{product.name}</div>
               <p className="text-lg font-bold">$ {product.price}</p>
+              <button className="border py-2 px-6 rounded-md bg-blue-600 text-white">Add to Cart</button>
             </div>
           ))}
         </div>

@@ -35,11 +35,12 @@ const Home = async () => {
                 height={300}
                 alt={product.alt}
                 src={urlFor(product.image).url()}
-                className="rounded-md h-60"
+                className="rounded-md h-60 object-cover"
                 />
                 </Link>
               <div className="text-lg">{product.name}</div>
               <p className="text-lg font-bold">$ {product.price}</p>
+              <button className="border py-2 px-6 rounded-md bg-blue-600 text-white">Add to Cart</button>
             </div>
           ))}
         </div>
