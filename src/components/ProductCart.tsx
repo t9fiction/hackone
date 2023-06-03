@@ -35,7 +35,7 @@ const ProductCart: FC<{ product: any }> = ({ product }) => {
         />
       </Link>
       <div className="text-lg">{product.name}</div>
-      <p className="text-lg font-bold">$ {product.price}</p>
+      <p className="text-lg font-bold pb-2">$ {product.price}</p>
       <button
         onClick={handleAddToCart}
         className="border py-2 px-6 rounded-md bg-blue-600 text-white"
