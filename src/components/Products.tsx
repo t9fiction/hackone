@@ -2,9 +2,8 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import Card from "./Card";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import { client } from "../../sanity/lib/client";
 import { Product } from "../../types/Product";
 
@@ -18,38 +17,22 @@ export const getData = async () => {
 
 const Products = async () => {
   const data = await getData();
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    responsive: [
-      {
-        breakpoint: 1024, // lg and above
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 768, // sm
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480, // mobile
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+  const responsive = {
+    
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
   };
-
-
+  
   return (
     <div className="bg-white" id="products">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8">
@@ -61,13 +44,13 @@ const Products = async () => {
         </h2>
 
         {/* Corousel */}
-        <Slider {...settings}>
+        <Carousel responsive={responsive}>
           {data.map((product:Product) => (
             <div key={product._id}>
               <Card product={product} />
             </div>
           ))}
-        </Slider>
+        </Carousel>
       </div>
     </div>
   );
