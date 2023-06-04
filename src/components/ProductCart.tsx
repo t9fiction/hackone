@@ -26,7 +26,7 @@ const ProductCart: FC<{ product: any }> = ({ product }) => {
 
   return (
     <>
-      <Link href={`/products/${product.name}`}>
+      <Link href={`/products/${product._id}`}>
         <img
           height={300}
           alt={product.alt}
