@@ -1,6 +1,8 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import ProdcutDetail from "@/components/ProdcutDetail";
+import { IoMdHeartEmpty } from "react-icons/io";
+import RelatedProducts from "@/components/RelatedProducts";
 
 const Home = async (params: any) => {
   const product = params?.params?.product;
@@ -8,8 +10,6 @@ const Home = async (params: any) => {
   const response = await client.fetch(
     `*[_type=="product" && _id=="${product}"]`
   );
-
-  console.log(response, "response");
 
   return (
     <div className="bg-white">
@@ -44,15 +44,98 @@ const Home = async (params: any) => {
             </div>
 
             {/* SIZE START */}
-            <div id="sizesGrid" className="grid grid-cols-3 gap-2">
-              
+            <div id="sizesGrid" className="mb-10">
+              <div className="flex justify-between mb-2">
+                {/* Heading Start */}
+                <div className="text-base font-semibold">Size Select</div>
+                <div className="text-base font-medium text-black/[0.5]">
+                  Size Guide
+                </div>
+              </div>
+              {/* Heading End */}
 
+              <div className="grid grid-cols-3 gap-2">
+                <div
+                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
+                >
+                  baby - bb
+                </div>
 
+                <div
+                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
+                >
+                  small - sm
+                </div>
 
+                <div
+                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
+                >
+                  medium - md
+                </div>
+
+                <div
+                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
+                >
+                  large - lg
+                </div>
+
+                <div
+                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
+                >
+                  x large - xl
+                </div>
+                <div
+                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-not-allowed bg-black/[0.1] opacity-[50%]`}
+                >
+                  x large - xl
+                </div>
+                <div
+                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-not-allowed bg-black/[0.1] opacity-[50%]`}
+                >
+                  x large - xl
+                </div>
+
+                <div
+                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-not-allowed bg-black/[0.1] opacity-[50%]`}
+                >
+                  full - ff
+                </div>
+
+                <div
+                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-not-allowed bg-black/[0.1] opacity-50`}
+                >
+                  x small - xs
+                </div>
+              </div>
+              <div className="text-red-600 mt-1">
+                Size selection is required
+              </div>
+              {/* SIZE END */}
             </div>
-            {/* SIZE END */}
+
+            {/* ADD TO CART BUTTON START */}
+            <button className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75">
+              Add to Cart
+            </button>
+            {/* ADD TO CART BUTTON END */}
+
+            {/* WHISHLIST BUTTON START */}
+            <button className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10">
+              Whishlist
+              <IoMdHeartEmpty size={20} />
+            </button>
+            {/* WHISHLIST BUTTON END */}
+            <div>
+              <div className="text-lg font-bold mb-5">Product Details</div>
+              <div className="markdown text-md mb-5">
+                {/* <p>{response[0].description}</p> */}
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aut nostrum voluptatum facilis neque aperiam laudantium numquam voluptas nesciunt. Repellendus sunt exercitationem perferendis est. Animi, fuga dolorum illum eius blanditiis esse quam, velit sunt nisi rerum ad numquam maiores iusto.</p>
+              </div>
+            </div>
           </div>
         </div>
+        {/* @ts-expect-error Server Component */}
+        <RelatedProducts />
       </div>
     </div>
   );

@@ -3,8 +3,9 @@
 import React, { FC } from "react";
 import { urlFor } from "@/functions/allfunction";
 import Link from "next/link";
+import { Product } from "../../types/Product";
 
-const ProductCart: FC<{ product: any }> = ({ product }) => {
+const ProductCart: FC<{ product: Product }> = ({ product }) => {
 
   const handleAddToCart = async () => {
     try {
@@ -15,10 +16,8 @@ const ProductCart: FC<{ product: any }> = ({ product }) => {
         }),
       });
 
-      console.log(res,"res")
-  
+ 
       const result = await res.json();
-      console.log(result);
     } catch (error) {
       console.error("Error parsing JSON:", error);
     }
