@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { MdSearch } from "react-icons/md";
-import { BsCart4 } from "react-icons/bs";
+import { BsCart } from "react-icons/bs";
 import { HiOutlineMenu } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
 
@@ -46,11 +46,16 @@ const Navbar = () => {
           />
         </div>
 
-        <div className="ml-auto hidden lg:flex">
-          <div className="bg-gray-100 rounded-full items-center justify-center text-center flex w-10 h-10">
-            <BsCart4 size={26} />
+        <Link href={"/cart"}>
+          <div className="ml-auto hidden lg:flex">
+            <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+              <BsCart className="text-[15px] md:text-[20px]" />
+              <div className="h-[10px] md:h-[14px] min-w-[10px] md:min-w-[14px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[8px] flex justify-center items-center px-[2px] md:px-[5px]">
+                5
+              </div>
+            </div>
           </div>
-        </div>
+        </Link>
 
         <div className="flex lg:hidden ml-auto">
           {nav ? (
@@ -66,16 +71,32 @@ const Navbar = () => {
       </div>
       {!nav && (
         <div className="flex flex-col mx-auto px-4 space-y-8 bg-gray-300 py-8 rounded-md text-black  justify-center lg:hidden absolute top-20 right-24">
-          <Link href={"/female"} className="hover:text-white" onClick={handleClick}>
+          <Link
+            href={"/female"}
+            className="hover:text-white"
+            onClick={handleClick}
+          >
             Female
           </Link>
-          <Link href={"/male"} className="hover:text-white" onClick={handleClick}>
+          <Link
+            href={"/male"}
+            className="hover:text-white"
+            onClick={handleClick}
+          >
             Male
           </Link>
-          <Link href={"/kids"} className="hover:text-white" onClick={handleClick}>
+          <Link
+            href={"/kids"}
+            className="hover:text-white"
+            onClick={handleClick}
+          >
             Kids
           </Link>
-          <Link href={"/all"} className="hover:text-white" onClick={handleClick}>
+          <Link
+            href={"/all"}
+            className="hover:text-white"
+            onClick={handleClick}
+          >
             All Products
           </Link>
         </div>

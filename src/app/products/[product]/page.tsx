@@ -90,23 +90,7 @@ const Home = async (params: any) => {
                 >
                   x large - xl
                 </div>
-                <div
-                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-not-allowed bg-black/[0.1] opacity-[50%]`}
-                >
-                  x large - xl
-                </div>
-
-                <div
-                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-not-allowed bg-black/[0.1] opacity-[50%]`}
-                >
-                  full - ff
-                </div>
-
-                <div
-                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-not-allowed bg-black/[0.1] opacity-50`}
-                >
-                  x small - xs
-                </div>
+               
               </div>
               <div className="text-red-600 mt-1">
                 Size selection is required
