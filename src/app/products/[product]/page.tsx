@@ -10,7 +10,8 @@ const Home = async (params: any) => {
   const response = await client.fetch(
     `*[_type=="product" && _id=="${product}"]`
   );
-
+  const category = response[0].category;
+  
   return (
     <div className="bg-white">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 ">
@@ -129,13 +130,19 @@ const Home = async (params: any) => {
               <div className="text-lg font-bold mb-5">Product Details</div>
               <div className="markdown text-md mb-5">
                 {/* <p>{response[0].description}</p> */}
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aut nostrum voluptatum facilis neque aperiam laudantium numquam voluptas nesciunt. Repellendus sunt exercitationem perferendis est. Animi, fuga dolorum illum eius blanditiis esse quam, velit sunt nisi rerum ad numquam maiores iusto.</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
+                  aut nostrum voluptatum facilis neque aperiam laudantium
+                  numquam voluptas nesciunt. Repellendus sunt exercitationem
+                  perferendis est. Animi, fuga dolorum illum eius blanditiis
+                  esse quam, velit sunt nisi rerum ad numquam maiores iusto.
+                </p>
               </div>
             </div>
           </div>
         </div>
         {/* @ts-expect-error Server Component */}
-        <RelatedProducts />
+        <RelatedProducts category={category} />
       </div>
     </div>
   );
