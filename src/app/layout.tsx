@@ -45,11 +45,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={sora.className}>
-        <ReduxWrapper>
+        {/* <ReduxWrapper> */}
         <Navbar />
         {children}
         <Footer />
-        </ReduxWrapper>
+        {/* </ReduxWrapper> */}
         </body>
     </html>
   );

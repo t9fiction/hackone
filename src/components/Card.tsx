@@ -3,7 +3,6 @@ import React from "react";
 import { urlFor } from "@/functions/allfunction";
 
 const Card = ({ product }: any) => {
-  console.log(product.images.length,"product in card")
   return (
     <div className="shrink-0 px-4" id={product.id}>
       <img src={urlFor(product.images[0].image).url()} alt="" className="w-[300px] object-cover hover:scale-105 ease-in-out duration-300 rounded-md h-[320px]" />
