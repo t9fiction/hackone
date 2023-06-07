@@ -12,7 +12,7 @@ const ProdcutDetail = async (id: any) => {
   const data = await client.fetch(
     `*[_type=="product" && _id =="${id.id}"]`
   );
-  console.log(data, "data");
+  console.log(data[0].images, "data");
   return (
     <div className="text-white text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
       <Carousel
@@ -23,8 +23,8 @@ const ProdcutDetail = async (id: any) => {
         className="productCarousel"
       >
         {
-          data.map((product:any)=>(
-            <img key={product._id} src={urlFor(product.images[0].image).url()} />
+          data[0].images.map((image:any)=>(
+            <img key={image.id} src={urlFor(image.image).url()} />
           ))
         }
       </Carousel>
