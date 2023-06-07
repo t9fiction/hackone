@@ -5,8 +5,9 @@ import { urlFor } from "@/functions/allfunction";
 import Link from "next/link";
 import { Product } from "../../types/Product";
 
-const ProductCart: FC<{ product: Product }> = ({ product }) => {
+const ProductCart: FC<{ product: any }> = ({ product }) => {
 
+  product.images
   const handleAddToCart = async () => {
     try {
       const res = await fetch("/api/cart", {
@@ -23,13 +24,14 @@ const ProductCart: FC<{ product: Product }> = ({ product }) => {
     }
   };
 
+  console.log(product,"product in cartpage")
   return (
     <>
       <Link href={`/products/${product._id}`}>
         <img
           height={300}
-          alt={product.alt}
-          src={urlFor(product.image).url()}
+          alt=''
+          src={urlFor(product.images[0].image).url()}
           className="rounded-md h-60 object-cover"
         />
       </Link>

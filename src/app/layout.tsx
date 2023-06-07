@@ -4,7 +4,7 @@ import { Inter, Sora } from "next/font/google";
 import { Nunito, Roboto, Montserrat, Raleway } from "next/font/google";
 import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
-
+import ReduxWrapper from "@/components/_app";
 // const nunito = Nunito({
 //   subsets: ["latin"],
 // });
@@ -45,9 +45,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={sora.className}>
+        <ReduxWrapper>
         <Navbar />
         {children}
         <Footer />
+        </ReduxWrapper>
         </body>
     </html>
   );

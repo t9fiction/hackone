@@ -1,17 +1,24 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { client } from "../../../../sanity/lib/client";
 import ProdcutDetail from "@/components/ProdcutDetail";
 import { IoMdHeartEmpty } from "react-icons/io";
 import RelatedProducts from "@/components/RelatedProducts";
+import { useAppDispatch } from "@/store/store";
+import { addToCart } from "@/store/Slices/cartSlice";
 
 const Home = async (params: any) => {
+  const dispatch = useAppDispatch();
+
+  const [selectedSize, setSelectedSize] = useState();
+  const [showError, setShowError] = useState(false);
   const product = params?.params?.product;
   // console.log(product);
   const response = await client.fetch(
     `*[_type=="product" && _id=="${product}"]`
   );
   const category = response[0].category;
-  
+
   return (
     <div className="bg-white">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 ">
@@ -55,7 +62,7 @@ const Home = async (params: any) => {
               </div>
               {/* Heading End */}
 
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2" id="sizesGrid">
                 <div
                   className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
                 >
@@ -90,7 +97,6 @@ const Home = async (params: any) => {
                 >
                   x large - xl
                 </div>
-               
               </div>
               <div className="text-red-600 mt-1">
                 Size selection is required
@@ -99,7 +105,19 @@ const Home = async (params: any) => {
             </div>
 
             {/* ADD TO CART BUTTON START */}
-            <button className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75">
+            <button
+              className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
+              onClick={() => {
+                if (!selectedSize) {
+                  setShowError(true);
+                  // document.getElementById("sizesGrid").scrollIntoView({
+                  //   block: "center",
+                  //   behavior: "smooth",
+                  // });
+                }
+                dispatch(addToCart("product1"));
+              }}
+            >
               Add to Cart
             </button>
             {/* ADD TO CART BUTTON END */}

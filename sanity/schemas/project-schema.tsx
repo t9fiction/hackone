@@ -17,15 +17,27 @@ const product = {
       },
     },
     {
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: { hotspot: true },
-      fields: [
+      name: "images",
+      title: "Images",
+      type: "array",
+      of: [
         {
-          name: "alt",
-          title: "Alt",
-          type: "string",
+          type: "object",
+          fields: [
+            {
+              name: "image",
+              title: "Image",
+              type: "image",
+              options: { hotspot: true },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Alt",
+                  type: "string",
+                },
+              ],
+            },
+          ],
         },
       ],
     },
@@ -40,17 +52,42 @@ const product = {
       type: "number",
     },
     {
+      name: "sizes",
+      type: "array",
+      title: "Sizes",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "size",
+              title: "Size",
+              type: "string",
+              options: {
+                list: ["sm", "md", "lg", "xl"], 
+              },
+            },
+            {
+              name: "quantity",
+              title: "Quantity",
+              type: "number",
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: "category",
       title: "Category",
       type: "string",
-      initialValue: 'men',
-      options:{
-        list:[
-          {title:"Men", value:'men'},
-          {title:"Women", value:'women'},
-          {title:"Kids", value:'kids'},
-        ]
-      }
+      initialValue: "men",
+      options: {
+        list: [
+          { title: "Men", value: "men" },
+          { title: "Women", value: "women" },
+          { title: "Kids", value: "kids" },
+        ],
+      },
     },
     {
       name: "content",
@@ -60,4 +97,5 @@ const product = {
     },
   ],
 };
+
 export default product;
