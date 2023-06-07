@@ -32,7 +32,7 @@ const ProductCart: FC<{ product: any }> = ({ product }) => {
           height={300}
           alt=''
           src={urlFor(product.images[0].image).url()}
-          className="rounded-md h-60 object-cover"
+          className="rounded-md h-60 object-cover w-full"
         />
       </Link>
       <div className="text-lg">{product.name}</div>
