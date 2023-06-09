@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { client } from "../../../../sanity/lib/client";
 import ProdcutDetail from "@/components/ProdcutDetail";
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -16,8 +16,8 @@ interface PSize {
 const ProductPage = async (params: any) => {
   // const dispatch = useAppDispatch();
 
-  // const [selectedSize, setSelectedSize] = useState();
-  // const [showError, setShowError] = useState(false);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [showError, setShowError] = useState(true);
   const product_ = params?.params?.product;
   // console.log(product);
   const product = await client.fetch(
@@ -62,27 +62,32 @@ const ProductPage = async (params: any) => {
             <div className="mb-10">
               <div className="flex justify-between mb-2">
                 {/* Heading Start */}
-                <div className="text-base font-semibold">Size Select</div>
-                <div className="text-base font-medium text-black/[0.5]">
+                <div className="text-base font-semibold">Available Sizes</div>
+                {/* <div className="text-base font-medium text-black/[0.5]">
                   Size Guide
-                </div>
+                </div> */}
               </div>
               {/* Heading End */}
 
-              <div className="grid grid-cols-3 gap-2">
-                {array?.map((element: PSize) => (
-                    <div
-                      className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
-                      key={element?._key}
-                    >
-                      {element?.size}
-                  </div>
-                ))}
-              </div>
-              <div className="text-red-600 mt-1">
-                Size selection is required
-              </div>
-              {/* SIZE END */}
+              {/* <div className="grid grid-cols-3 gap-2"> */}
+              {array?.map((element: PSize) => (
+                <div
+                  className={`border rounded-md text-center py-3 font-medium  hover:border-black cursor-pointer`}
+                  // className={`border rounded-md text-center py-3 font-medium  hover:border-black cursor-not-allowed bg-black/[0.1] opacity-50`}
+                  key={element?._key}
+                  onClick={() => {
+                    setSelectedSize(element?.size);
+                    setShowError(false);
+                  }}
+                >
+                  {element?.size}P
+                </div>
+              ))}
+              {showError && (
+                <div className="text-red-600 mt-1">
+                  Size selection is required
+                </div>
+              )}
             </div>
 
             {/* ADD TO CART BUTTON START */}
