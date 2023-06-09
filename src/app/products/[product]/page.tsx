@@ -73,18 +73,18 @@ const ProductPage = async (params: any) => {
               {array?.map((element: PSize) => (
                 <div
                   className={`border rounded-md text-center py-3 font-medium  hover:border-black cursor-pointer`}
-                  // className={`border rounded-md text-center py-3 font-medium  hover:border-black cursor-not-allowed bg-black/[0.1] opacity-50`}
-                  key={element?._key}
+                  key={element._key}
                   onClick={() => {
-                    setSelectedSize(element?.size);
+                    setSelectedSize(element.size);
                     setShowError(false);
                   }}
                 >
-                  {element?.size}P
+                  {element.size}
                 </div>
               ))}
               {showError && (
                 <div className="text-red-600 mt-1">
+                  {selectedSize}
                   Size selection is required
                 </div>
               )}
