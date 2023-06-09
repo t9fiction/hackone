@@ -3,7 +3,6 @@
 import React, { FC } from "react";
 import { urlFor } from "@/functions/allfunction";
 import Link from "next/link";
-import { Product } from "../../types/Product";
 
 const ProductCart: FC<{ product: any }> = ({ product }) => {
   const handleAddToCart = async () => {

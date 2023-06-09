@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import ProdcutDetail from "@/components/ProdcutDetail";
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -7,17 +7,24 @@ import RelatedProducts from "@/components/RelatedProducts";
 // import { useAppDispatch } from "@/store/store";
 import { addToCart } from "@/store/Slices/cartSlice";
 
-const Home = async (params: any) => {
+interface PSize {
+  _key: string;
+  size: string;
+  quantity: number;
+}
+
+const ProductPage = async (params: any) => {
   // const dispatch = useAppDispatch();
 
-  const [selectedSize, setSelectedSize] = useState();
-  const [showError, setShowError] = useState(false);
+  // const [selectedSize, setSelectedSize] = useState();
+  // const [showError, setShowError] = useState(false);
   const product_ = params?.params?.product;
   // console.log(product);
   const product = await client.fetch(
     `*[_type=="product" && _id=="${product_}"]`
   );
   const category = product[0].category;
+  const array = product[0].sizes;
   return (
     <div className="bg-white">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 ">
@@ -52,7 +59,7 @@ const Home = async (params: any) => {
             </div>
 
             {/* SIZE START */}
-            <div id="sizesGrid" className="mb-10">
+            <div className="mb-10">
               <div className="flex justify-between mb-2">
                 {/* Heading Start */}
                 <div className="text-base font-semibold">Size Select</div>
@@ -62,41 +69,15 @@ const Home = async (params: any) => {
               </div>
               {/* Heading End */}
 
-              <div className="grid grid-cols-3 gap-2" id="sizesGrid">
-                <div
-                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
-                >
-                  baby - bb
-                </div>
-
-                <div
-                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
-                >
-                  small - sm
-                </div>
-
-                <div
-                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
-                >
-                  medium - md
-                </div>
-
-                <div
-                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
-                >
-                  large - lg
-                </div>
-
-                <div
-                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
-                >
-                  x large - xl
-                </div>
-                <div
-                  className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-not-allowed bg-black/[0.1] opacity-[50%]`}
-                >
-                  x large - xl
-                </div>
+              <div className="grid grid-cols-3 gap-2">
+                {array?.map((element: PSize) => (
+                    <div
+                      className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer`}
+                      key={element?._key}
+                    >
+                      {element?.size}
+                  </div>
+                ))}
               </div>
               <div className="text-red-600 mt-1">
                 Size selection is required
@@ -108,14 +89,14 @@ const Home = async (params: any) => {
             <button
               className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
               // onClick={() => {
-                // if (!selectedSize) {
-                //   setShowError(true);
-                //   // document.getElementById("sizesGrid").scrollIntoView({
-                //   //   block: "center",
-                //   //   behavior: "smooth",
-                //   // });
-                // }
-                // dispatch(addToCart("product1"));
+              // if (!selectedSize) {
+              //   setShowError(true);
+              //   // document.getElementById("sizesGrid").scrollIntoView({
+              //   //   block: "center",
+              //   //   behavior: "smooth",
+              //   // });
+              // }
+              // dispatch(addToCart("product1"));
               // }}
             >
               Add to Cart
@@ -150,4 +131,4 @@ const Home = async (params: any) => {
   );
 };
 
-export default Home;
+export default ProductPage;

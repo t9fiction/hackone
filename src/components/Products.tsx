@@ -49,7 +49,7 @@ const Products = async () => {
         >
           {data.map((product: Product) => (
             <div key={product._id}>
-              <Card product={product} />
+              <Card product={product} key={product._id} />
             </div>
           ))}
         </Carousel>

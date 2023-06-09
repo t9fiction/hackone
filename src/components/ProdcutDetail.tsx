@@ -1,18 +1,17 @@
-"use client";
-/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { client } from "../../sanity/lib/client";
-import { Product } from "../../types/Product";
 import { urlFor } from "@/functions/allfunction";
+
 
 const ProdcutDetail = async (id: any) => {
   const data = await client.fetch(
     `*[_type=="product" && _id =="${id.id}"]`
   );
-  console.log(data[0].images, "data");
+
   return (
     <div className="text-white text-[20px] w-full max-w-[1360px] mx-auto sticky top-[50px]">
       <Carousel
@@ -22,35 +21,12 @@ const ProdcutDetail = async (id: any) => {
         thumbWidth={60}
         className="productCarousel"
       >
-        {
-          data[0].images.map((image:any)=>(
-            <img key={image.id} src={urlFor(image.image).url()} />
-          ))
-        }
+        {data[0].images.map((image: any) => (
+          <img key={id} src={urlFor(image.image).url()} alt={'image'} />
+        ))}
       </Carousel>
     </div>
   );
 };
 
 export default ProdcutDetail;
-
-// export async function getStaticPaths() {
-//   const products = await fetch("/api/products?populate=*");
-//   const paths = products?.images?.map((p) => ({
-//       params: {
-//           slug: p.attributes.slug,
-//       },
-//   }));
-
-//   return {
-//       paths,
-//       fallback: false,
-//   };
-// }
-
-// export async function getStaticProps(id:any) {
-//   const product = await client.fetch(
-//     `*[_type=="product" && _id =="${id}"]`
-//   );
-//   return product
-// }
