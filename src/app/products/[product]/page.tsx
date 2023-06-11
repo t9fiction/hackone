@@ -122,19 +122,3 @@ export default ProductPage;
 //       fallback: false,
 //   };
 // }
-
-export async function getStaticProps(params: any) {
-  const product_ = params?.params?.product;
-
-  const res = await client.fetch(`*[_type=="product" && _id=="${product_}"]`);
-
-  // Fetch data from an API or other data source
-  const data = await res.json();
-  console.log("data in getstaticprops", data);
-  // Return the data as props
-  return {
-    props: {
-      data,
-    },
-  };
-}
