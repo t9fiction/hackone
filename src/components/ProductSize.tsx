@@ -1,12 +1,12 @@
+"use client";
 import React, { useState } from "react";
 
 interface PSize {
-    _key: string;
-    size: string;
-    quantity: number;
-  }
+  _key: string;
+  size: string;
+  quantity: number;
+}
 
-  
 const ProductSize = ({ sizes }: any) => {
   const [selectedSize, setSelectedSize] = useState("");
   const [showError, setShowError] = useState(true);
@@ -41,9 +41,7 @@ const ProductSize = ({ sizes }: any) => {
           </div>
         ))}
         {showError && (
-          <div className="text-red-600 mt-1">
-            Size selection is required
-          </div>
+          <div className="text-red-600 mt-1">Size selection is required</div>
         )}
       </div>
     </div>

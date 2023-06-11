@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import ProdcutDetail from "@/components/ProdcutDetail";
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -8,10 +8,7 @@ import RelatedProducts from "@/components/RelatedProducts";
 import { addToCart } from "@/store/Slices/cartSlice";
 import ProductSize from "@/components/ProductSize";
 
-
 const ProductPage = async (params: any) => {
-
-
   const product_ = params?.params?.product;
 
   const product = await client.fetch(
@@ -21,8 +18,6 @@ const ProductPage = async (params: any) => {
   console.log(product);
   const category = product[0].category;
   const sizes = product[0].sizes;
-
-  
 
   return (
     <div className="bg-white">
