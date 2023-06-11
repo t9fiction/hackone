@@ -1,30 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { client } from "../../../../sanity/lib/client";
 import ProdcutDetail from "@/components/ProdcutDetail";
 import { IoMdHeartEmpty } from "react-icons/io";
 import RelatedProducts from "@/components/RelatedProducts";
 // import { useAppDispatch } from "@/store/store";
 import { addToCart } from "@/store/Slices/cartSlice";
+import ProductSize from "@/components/ProductSize";
 
-interface PSize {
-  _key: string;
-  size: string;
-  quantity: number;
-}
 
 const ProductPage = async (params: any) => {
-  // const dispatch = useAppDispatch();
 
-  const [selectedSize, setSelectedSize] = useState("");
-  const [showError, setShowError] = useState(true);
+
   const product_ = params?.params?.product;
-  // console.log(product);
+
   const product = await client.fetch(
     `*[_type=="product" && _id=="${product_}"]`
   );
+
+  console.log(product);
   const category = product[0].category;
-  const array = product[0].sizes;
+  const sizes = product[0].sizes;
+
+  
+
   return (
     <div className="bg-white">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 ">
@@ -59,36 +58,7 @@ const ProductPage = async (params: any) => {
             </div>
 
             {/* SIZE START */}
-            <div className="mb-10">
-              <div className="flex justify-between mb-2">
-                {/* Heading Start */}
-                <div className="text-base font-semibold">Available Sizes</div>
-                {/* <div className="text-base font-medium text-black/[0.5]">
-                  Size Guide
-                </div> */}
-              </div>
-              {/* Heading End */}
-
-              {/* <div className="grid grid-cols-3 gap-2"> */}
-              {array?.map((element: PSize) => (
-                <div
-                  className={`border rounded-md text-center py-3 font-medium  hover:border-black cursor-pointer`}
-                  key={element._key}
-                  onClick={() => {
-                    setSelectedSize(element.size);
-                    setShowError(false);
-                  }}
-                >
-                  {element.size}
-                </div>
-              ))}
-              {showError && (
-                <div className="text-red-600 mt-1">
-                  {selectedSize}
-                  Size selection is required
-                </div>
-              )}
-            </div>
+            <ProductSize sizes={sizes} />
 
             {/* ADD TO CART BUTTON START */}
             <button
@@ -137,3 +107,34 @@ const ProductPage = async (params: any) => {
 };
 
 export default ProductPage;
+
+// export async function getStaticPaths() {
+
+//   const products = await fetchDataFromApi("/api/products?populate=*");
+//   const paths = products?.data?.map((p) => ({
+//       params: {
+//           slug: p.attributes.slug,
+//       },
+//   }));
+
+//   return {
+//       paths,
+//       fallback: false,
+//   };
+// }
+
+export async function getStaticProps(params: any) {
+  const product_ = params?.params?.product;
+
+  const res = await client.fetch(`*[_type=="product" && _id=="${product_}"]`);
+
+  // Fetch data from an API or other data source
+  const data = await res.json();
+  console.log("data in getstaticprops", data);
+  // Return the data as props
+  return {
+    props: {
+      data,
+    },
+  };
+}
