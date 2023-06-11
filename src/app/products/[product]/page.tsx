@@ -2,27 +2,25 @@
 import React from "react";
 import { client } from "../../../../sanity/lib/client";
 import ProdcutDetail from "@/components/ProdcutDetail";
-import { IoMdHeartEmpty } from "react-icons/io";
 import RelatedProducts from "@/components/RelatedProducts";
-// import { useAppDispatch } from "@/store/store";
-import { addToCart } from "@/store/Slices/cartSlice";
 import ProductSize from "@/components/ProductSize";
+// import { useAppDispatch } from "@/store/store";
 
+interface IContent {
+  _key: string;
+  text: string;
+}
 
 const ProductPage = async (params: any) => {
-
-
   const product_ = params?.params?.product;
 
   const product = await client.fetch(
     `*[_type=="product" && _id=="${product_}"]`
   );
 
-  console.log(product);
+  console.log(product[0].content[0]);
   const category = product[0].category;
   const sizes = product[0].sizes;
-
-  
 
   return (
     <div className="bg-white">
@@ -60,41 +58,16 @@ const ProductPage = async (params: any) => {
             {/* SIZE START */}
             <ProductSize sizes={sizes} />
 
-            {/* ADD TO CART BUTTON START */}
-            <button
-              className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
-              // onClick={() => {
-              // if (!selectedSize) {
-              //   setShowError(true);
-              //   // document.getElementById("sizesGrid").scrollIntoView({
-              //   //   block: "center",
-              //   //   behavior: "smooth",
-              //   // });
-              // }
-              // dispatch(addToCart("product1"));
-              // }}
-            >
-              Add to Cart
-            </button>
-            {/* ADD TO CART BUTTON END */}
-
-            {/* WHISHLIST BUTTON START */}
-            <button className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10">
-              Whishlist
-              <IoMdHeartEmpty size={20} />
-            </button>
             {/* WHISHLIST BUTTON END */}
             <div>
               <div className="text-lg font-bold mb-5">Product Details</div>
               <div className="markdown text-md mb-5">
                 {/* <p>{response[0].description}</p> */}
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum
-                  aut nostrum voluptatum facilis neque aperiam laudantium
-                  numquam voluptas nesciunt. Repellendus sunt exercitationem
-                  perferendis est. Animi, fuga dolorum illum eius blanditiis
-                  esse quam, velit sunt nisi rerum ad numquam maiores iusto.
-                </p>
+                <div>
+                  {product[0].content[0].children.map((content: IContent) => (
+                    <div key={content._key}> {content.text} </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
