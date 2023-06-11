@@ -5,7 +5,7 @@ import ProdcutDetail from "@/components/ProdcutDetail";
 import RelatedProducts from "@/components/RelatedProducts";
 import ProductSize from "@/components/ProductSize";
 // import ReactMarkdown from "react-markdown";
-// import { useAppDispatch } from "@/store/store";
+
 
 interface IContent {
   _key: string;
@@ -19,7 +19,6 @@ const ProductPage = async (params: any) => {
     `*[_type=="product" && _id=="${product_}"]`
   );
 
-  console.log(product[0].content[0]);
   const category = product[0].category;
   const sizes = product[0].sizes;
 
@@ -57,7 +56,7 @@ const ProductPage = async (params: any) => {
             </div>
 
             {/* SIZE START */}
-            <ProductSize sizes={sizes} />
+            <ProductSize sizes={sizes} product={product[0]} />
 
             {/* WHISHLIST BUTTON END */}
             <div>
@@ -81,18 +80,3 @@ const ProductPage = async (params: any) => {
 };
 
 export default ProductPage;
-
-// export async function getStaticPaths() {
-
-//   const products = await fetchDataFromApi("/api/products?populate=*");
-//   const paths = products?.data?.map((p) => ({
-//       params: {
-//           slug: p.attributes.slug,
-//       },
-//   }));
-
-//   return {
-//       paths,
-//       fallback: false,
-//   };
-// }

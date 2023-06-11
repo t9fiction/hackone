@@ -1,9 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch, useSelector } from "react-redux";
 import cartSlice from "./Slices/cartSlice";
-// import {web3Reducer} from "../features/web3/web3ConnectSlice"
+// import { useDispatch, useSelector } from "react-redux";
 
-console.log("Values from Store")
 export const store = configureStore({
     reducer: {
         cart: cartSlice        
@@ -12,5 +10,8 @@ export const store = configureStore({
         serializableCheck: false
     })
 })
-export const useAppDispatch = ()=>useDispatch();
-export const useAppSelector = useSelector;
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch

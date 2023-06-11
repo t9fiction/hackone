@@ -1,7 +1,10 @@
 "use client";
 import { IoMdHeartEmpty } from "react-icons/io";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { addToCart } from "@/store/Slices/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface PSize {
   _key: string;
@@ -9,19 +12,40 @@ interface PSize {
   quantity: number;
 }
 
-const ProductSize = ({ sizes }: any) => {
+const ProductSize = ({ sizes, product }: any) => {
+  const dispatch = useAppDispatch();
   const [selectedSize, setSelectedSize] = useState("");
   const [showError, setShowError] = useState(false);
 
-  console.log(sizes, "Sizes");
+  console.log(product, "Product");
   const handleClick = (element: PSize) => {
     setSelectedSize(element.size);
     setShowError(false);
     console.log(selectedSize);
     console.log(showError);
   };
+
+  const notify = () => {
+    toast.success("Product added to cart", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  useEffect(() => {
+    console.log(selectedSize);
+    console.log(showError);
+  }, [selectedSize, showError]);
+
   return (
     <div>
+      <ToastContainer />
       <div className="mb-10">
         <div id="sizesGrid" className="flex justify-between mb-2">
           {/* Heading Start */}
@@ -56,10 +80,17 @@ const ProductSize = ({ sizes }: any) => {
             setShowError(true);
             document.getElementById("sizesGrid")?.scrollIntoView({
               block: "center",
-              behavior:"smooth"
-            })
+              behavior: "smooth",
+            });
+          } else {
+            dispatch(
+              addToCart({
+                ...product,
+                selectedSize,
+              })
+            );
+            notify();
           }
-          // dispatch(addToCart("product1"));
         }}
       >
         Add to Cart
