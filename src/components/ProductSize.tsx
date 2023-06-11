@@ -32,13 +32,13 @@ const ProductSize = ({ sizes }: any) => {
 
         {/* <div className="grid grid-cols-3 gap-2"> */}
         {sizes?.map((element: PSize) => (
-          <div
-            className={`border rounded-md text-center py-3 font-medium  hover:border-black cursor-pointer`}
-            key={element._key}
-            onClick={() => handleClick(element)}
-          >
-            {element.size}
-          </div>
+           <div
+           className={`border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer ${selectedSize === element.size ? 'bg-gray-200 border-black' : ''}`}
+           key={element._key}
+           onClick={() => handleClick(element)}
+         >
+           {element.size}
+         </div>
         ))}
         {showError && (
           <div className="text-red-600 mt-1">Size selection is required</div>
