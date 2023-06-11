@@ -4,6 +4,7 @@ import { client } from "../../../../sanity/lib/client";
 import ProdcutDetail from "@/components/ProdcutDetail";
 import RelatedProducts from "@/components/RelatedProducts";
 import ProductSize from "@/components/ProductSize";
+// import ReactMarkdown from "react-markdown";
 // import { useAppDispatch } from "@/store/store";
 
 interface IContent {
