@@ -12,7 +12,7 @@ const ProductSize = ({ sizes }: any) => {
   const [showError, setShowError] = useState(true);
 
   console.log(sizes, "Sizes");
-  const handleClick = (element: any) => {
+  const handleClick = (element: PSize) => {
     setSelectedSize(element.size);
     setShowError(false);
     console.log(selectedSize);
