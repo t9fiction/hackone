@@ -1,15 +1,24 @@
 import Image from "next/image";
 import React from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { CartItem } from "../../types/Product";
+import { urlFor } from "@/functions/allfunction";
 
-const CartItem = () => {
+
+interface CartItemProps {
+  data: CartItem;
+}
+
+const CartItem: React.FC<CartItemProps> = ({ data }) => {
+  console.log(data.images[0].image.alt)
   return (
     <div className="flex py-5 gap-3 md:gap-5 border-b">
       {/* IMAGE START */}
       <div className="shrink-0 aspect-square w-[50px] md:w-[80px]">
         <Image
-          src={"/images/products/1.png"}
-          alt={"1"}
+          src={'/images/products/1.png'}
+          // src={urlFor(data.images[0].image).url()}
+          alt={data.images[0].image.alt}
           width={120}
           height={120}
           className="rounded-md"
@@ -20,23 +29,23 @@ const CartItem = () => {
         <div className="flex flex-col md:flex-row justify-between">
           {/* PRODUCT TITLE */}
           <div className="text-lg md:text-2xl font-semibold text-black/[0.8]">
-            Jordon Retro 6 S
+            {data.name}
           </div>
 
           {/* PRODUCT SUBTITLE */}
           <div className="text-sm md:text-md font-medium text-black/[0.5] block md:hidden">
-            Jordon Retro Black Sweater
+            {data._type}
           </div>
 
           {/* PRODUCT PRICE */}
           <div className="text-sm md:text-md font-bold text-black/[0.5] mt-2">
-            MRP : &#8377; 555
+          MRP : &#8377;{data.price}
           </div>
         </div>
 
         {/* PRODUCT SUBTITLE */}
         <div className="text-md font-medium text-black/[0.5] hidden md:block">
-          Jordon Retro Black Sweater
+          {data._type}
         </div>
 
         <div className="flex items-center justify-between mt-4">

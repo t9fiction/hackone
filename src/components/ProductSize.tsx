@@ -28,10 +28,10 @@ const ProductSize = ({ sizes, product }: any) => {
   const notify = () => {
     toast.success("Product added to cart", {
       position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
+      autoClose: 1000,
+      hideProgressBar: true,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
       theme: "dark",

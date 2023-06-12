@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { CartItem } from "../../../types/Product";
 
 // // Define a type for the slice state
 // interface CounterState {
@@ -10,14 +11,14 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 //     value: 0,
 //   }
 
-interface CartItem {
-  _id: string;
-  _type: string;
-  name: string;
-  price: number;
-  size: string;
-  quantity: number;
-}
+// interface CartItem {
+//   _id: string;
+//   _type: string;
+//   name: string;
+//   price: number;
+//   size: string;
+//   quantity: number;
+// }
 
 interface CartState {
   cartItems: CartItem[];
@@ -32,18 +33,16 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      console.log(action.payload, "action in cartSlice");
       const item = state.cartItems.find(
         (p: any) => p._id === action.payload._id
       );
       if (item) {
         item.quantity++;
-        let price:number = item.price;
+        let price: number = item.price;
         price = item.price * item.quantity;
-        console.log(price,"Total Price")
+        console.log(price, "Total Price");
       } else {
         state.cartItems.push({ ...action.payload, quantity: 1 });
-        console.log(state.cartItems[2], "State cartitem");
       }
     },
   },

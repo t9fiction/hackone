@@ -11,7 +11,6 @@ import { useAppSelector } from "@/store/hooks";
 const Navbar = () => {
   const {cartItems} = useAppSelector((state=>state.cart))
   const [nav, setnav] = useState(true);
-  console.log(cartItems)
 
   const handleClick = () => setnav(!nav);
   return (
