@@ -6,9 +6,12 @@ import { MdSearch } from "react-icons/md";
 import { BsCart } from "react-icons/bs";
 import { HiOutlineMenu } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
+import { useAppSelector } from "@/store/hooks";
 
 const Navbar = () => {
+  const {cartItems} = useAppSelector((state=>state.cart))
   const [nav, setnav] = useState(true);
+  console.log(cartItems)
 
   const handleClick = () => setnav(!nav);
   return (
@@ -51,7 +54,7 @@ const Navbar = () => {
             <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
               <BsCart className="text-[15px] md:text-[20px]" />
               <div className="h-[10px] md:h-[14px] min-w-[10px] md:min-w-[14px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[8px] flex justify-center items-center px-[2px] md:px-[5px]">
-                5
+                {cartItems.length}
               </div>
             </div>
           </div>
