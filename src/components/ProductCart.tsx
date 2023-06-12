@@ -32,12 +32,14 @@ const ProductCart: FC<{ product: any }> = ({ product }) => {
       </Link>
       <div className="text-lg">{product.name}</div>
       <p className="text-lg font-bold pb-2">&#8377; {product.price}</p>
+      <Link href={`/products/${product._id}`}>
       <button
-        onClick={handleAddToCart}
+        // onClick={handleAddToCart}
         className="border py-2 px-6 rounded-md bg-blue-600 text-white"
-      >
+        >
         Add to Cart
       </button>
+        </Link>
     </>
   );
 };
