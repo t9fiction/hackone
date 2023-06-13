@@ -86,7 +86,7 @@ const ProductSize = ({ sizes, product }: any) => {
             dispatch(
               addToCart({
                 ...product,
-                selectedSize,
+                size: selectedSize,
               })
             );
             notify();

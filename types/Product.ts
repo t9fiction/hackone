@@ -32,7 +32,7 @@ export type Product = {
   }[];
 };
 
-export type CartItem = {
+export type CartItemType = {
   _id: string;
   _type: string;
   name: string;
