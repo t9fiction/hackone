@@ -2,11 +2,14 @@
 import CartItem from "@/components/CartItem";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 import { useAppSelector } from "@/store/hooks";
 
 const Cart = () => {
   const { cartItems } = useAppSelector((state) => state.cart);
+  const subTotal = useMemo(()=>{
+    return cartItems.reduce((total, val)=> total + val.price, 0)
+  },[cartItems])
   console.log(cartItems, "cartitems in cart");
   return (
     <div className="bg-white">
@@ -41,7 +44,7 @@ const Cart = () => {
                       Subtotal
                     </div>
                     <div className="text-md md:text-lg font-medium text-black">
-                      &#8377; {"19 695.00"}
+                      &#8377; {subTotal}
                     </div>
                   </div>
                   <div className="text-sm md:text-md py-5 border-t mt-5">
