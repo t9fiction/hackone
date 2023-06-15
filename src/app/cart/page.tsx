@@ -28,19 +28,18 @@ const Cart = () => {
     .NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
   const stripePromise = loadStripe(publishableKey);
 
-  const redirectURL =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://hackathon-one-tau.vercel.app";
+  // const redirectURL =
+  //   process.env.NODE_ENV === "development"
+  //     ? "http://localhost:3000"
+  //     : "https://hackathon-one-tau.vercel.app";
 
-  console.log(redirectURL, "redirectURL");
   const makePaymentRequest = async (payload: any) => {
     setLoading(true);
     const stripe = await stripePromise;
 
     console.log(payload, "payload");
 
-    const checkoutSessionResponse = await fetch(`${redirectURL}/api/stripe`, {
+    const checkoutSessionResponse = await fetch(`https://hackathon-one-tau.vercel.app/api/stripe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

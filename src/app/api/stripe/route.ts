@@ -29,14 +29,14 @@ export  async function POST(req: any, res: NextResponse){
       const redirectURL =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
-      : 'https://hackathon-one-tau.vercel.app/';
+      : 'https://hackathon-one-tau.vercel.app';
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items: [transformedItem],
         mode: 'payment',
-        success_url: redirectURL + '/success',
-        cancel_url: redirectURL + '/failed',
+        success_url: 'https://hackathon-one-tau.vercel.app/success',
+        cancel_url: 'https://hackathon-one-tau.vercel.app/failed',
         metadata: {
           images: item.image,
           name:"Hackathon",
