@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-const stripe = new Stripe("sk_test_51NIwkZK2fZ4RAErs5iRXlohfK1na1zzgAli2eWoqaDeklDMP57S53cHK3kQV3biMNDtLwhH2YJ3ykMWRqBuENSSH00BZCpbqwt", {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2022-11-15",
 });
 
@@ -35,8 +35,8 @@ export  async function POST(req: any, res: NextResponse){
         payment_method_types: ['card'],
         line_items: [transformedItem],
         mode: 'payment',
-        success_url: redirectURL + '/payment/success',
-        cancel_url: redirectURL + '/payment/fail',
+        success_url: redirectURL + '/success',
+        cancel_url: redirectURL + '/failed',
         metadata: {
           images: item.image,
           name:"Hackathon",

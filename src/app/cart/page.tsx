@@ -40,7 +40,7 @@ const Cart = () => {
 
     console.log(payload, "payload");
 
-    const checkoutSessionResponse = await fetch(`http://localhost:3000/api/stripe`, {
+    const checkoutSessionResponse = await fetch(`${redirectURL}/api/stripe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
