@@ -1,16 +1,64 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import CartItem from "@/components/CartItem";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useAppSelector } from "@/store/hooks";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const { cartItems } = useAppSelector((state) => state.cart);
-  const subTotal = useMemo(()=>{
-    return cartItems.reduce((total, val)=> total + val.price, 0)
-  },[cartItems])
+  const [loading, setLoading] = useState(false);
+  const subTotal = useMemo(() => {
+    return cartItems.reduce((total, val) => total + val.price, 0);
+  }, [cartItems]);
   console.log(cartItems, "cartitems in cart");
+  const [item, setItem] = useState({
+    name: "Apple AirPods",
+    description: "Latest Apple AirPods.",
+    image:
+      "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
+    quantity: 1,
+    price: 999,
+  });
+
+  // Stripe
+  const publishableKey = process.env
+    .NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
+  const stripePromise = loadStripe(publishableKey);
+
+  const redirectURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://hackathon-one-tau.vercel.app";
+
+  console.log(redirectURL, "redirectURL");
+  const makePaymentRequest = async (payload: any) => {
+    setLoading(true);
+    const stripe = await stripePromise;
+
+    console.log(payload, "payload");
+
+    const checkoutSessionResponse = await fetch(`http://localhost:3000/api/stripe`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const checkoutSession = await checkoutSessionResponse.json();
+    const sessionID = checkoutSession.sessionId;
+    const result = await stripe?.redirectToCheckout({
+      sessionId: sessionID,
+    });
+    if (result?.error) {
+      alert(result.error.message);
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="bg-white">
       <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 ">
@@ -27,8 +75,8 @@ const Cart = () => {
               {/* CART ITEMS START */}
               <div className="flex-[2]">
                 <div className="text-lg font-bold">Cart Items</div>
-                {cartItems.map((item)=>(
-                <CartItem key={item._id} data={item} />
+                {cartItems.map((item) => (
+                  <CartItem key={item._id} data={item} />
                 ))}
                 {/* <CartItem /> */}
                 {/* <CartItem /> */}
@@ -56,8 +104,12 @@ const Cart = () => {
                 </div>
 
                 {/* BUTTON START */}
-                <button className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center">
+                <button
+                  className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center"
+                  onClick={() => makePaymentRequest({ item })}
+                >
                   Checkout
+                  {loading && <img src="/images/spinner.svg" alt="spinner" />}
                 </button>
                 {/* BUTTON END */}
               </div>
