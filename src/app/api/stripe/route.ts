@@ -1,12 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { CartItemType } from "../../../../types/Product";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2022-11-15",
 });
 
 
-export async function POST(req: any, res: NextResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
   const { cartItems } = await req.json(); // Extract cartItems from the request body
 
   const transformedItems = cartItems.map((item: any) => {
