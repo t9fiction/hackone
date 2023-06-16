@@ -1,49 +1,51 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { CartItemType } from "../../../../types/Product";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2022-11-15",
 });
 
 
-export  async function POST(req: any, res: NextResponse){
-  console.log(req,"req in API Stripe")
-  const {item}= await req.json();
-  console.log(item,"item")
+export async function POST(req: any, res: NextResponse) {
+  const { cartItems } = await req.json(); // Extract cartItems from the request body
 
-    const transformedItem = {
-         price_data: {
-          currency: 'usd',
-          product_data:{
-            name: item.name,
-            description: item.description,
-            images:[item.image],
-            metadata:{},
-
-          },
-          unit_amount: item.price * 100,
-
+  const transformedItems = cartItems.map((item: any) => {
+    console.log(item.images); // Log the value of item.images
+    console.log(item.images[0]?.image.asset._ref); // Log the value of item.images[0]?.image.asset._ref
+  
+    return {
+      price_data: {
+        currency: 'eur',
+        product_data: {
+          name: item.name,
+          description: item.description,
+          images: [item.images[0]?.image.asset._ref],
+          metadata: {},
         },
-        quantity: item.quantity,
-        
-      };
-      const redirectURL =
+        unit_amount: item.price * 100,
+      },
+      quantity: item.quantity,
+    };
+  });
+  
+
+  const redirectURL =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
       : 'https://hackathon-one-tau.vercel.app';
 
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items: [transformedItem],
-        mode: 'payment',
-        success_url: 'https://hackathon-one-tau.vercel.app/success',
-        cancel_url: 'https://hackathon-one-tau.vercel.app/failed',
-        metadata: {
-          images: item.image,
-          name:"Hackathon",
-          task:"Task Hackathon"
-        },
-      });
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: transformedItems, // Use the transformedItems array
+    mode: 'payment',
+    success_url: `${redirectURL}/success`,
+    cancel_url: `${redirectURL}/failed`,
+    metadata: {
+      images: cartItems.map((item: any) => item.image),
+      name: 'Hackathon',
+      task: 'Task Hackathon',
+    },
+  });
 
-    //    console.log("response-------------------",await session);
-    return NextResponse.json({ sessionId: session?.id });
-  };
+  return NextResponse.json({ sessionId: session?.id });
+}

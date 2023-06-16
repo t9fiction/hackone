@@ -45,7 +45,7 @@ const ProductPage = async (params: any) => {
             {/* PRODUCT PRICE */}
             <div className="flex flex-col ">
               <p className="mr-2 text-lg font-semibold">
-                MRP : &#8377;{product[0].price}
+                MRP : € {product[0].price}
               </p>
               <div className="text-md font-medium text-black/[0.5]">
                 incl. of taxes

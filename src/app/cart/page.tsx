@@ -32,31 +32,71 @@ const Cart = () => {
   //   process.env.NODE_ENV === "development"
   //     ? "http://localhost:3000"
   //     : "https://hackathon-one-tau.vercel.app";
+  
+  /**
+   * 
+   * Working with single Item
+   * 
+   */
+  // const makePaymentRequest = async (payload: any) => {
+  //   setLoading(true);
+  //   const stripe = await stripePromise;
 
+  //   console.log(payload, "payload");
+
+  //   const checkoutSessionResponse = await fetch(`https://hackathon-one-tau.vercel.app/api/stripe`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(payload),
+  //   });
+
+  //   const checkoutSession = await checkoutSessionResponse.json();
+  //   const sessionID = checkoutSession.sessionId;
+  //   const result = await stripe?.redirectToCheckout({
+  //     sessionId: sessionID,
+  //   });
+  //   if (result?.error) {
+  //     alert(result.error.message);
+  //   }
+  //   setLoading(false);
+  // };
+
+  /**
+   * 
+   * End of single Item functionality
+   * 
+   */
   const makePaymentRequest = async (payload: any) => {
     setLoading(true);
     const stripe = await stripePromise;
 
-    console.log(payload, "payload");
-
-    const checkoutSessionResponse = await fetch(`https://hackathon-one-tau.vercel.app/api/stripe`, {
+    const redirectURL =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : 'https://hackathon-one-tau.vercel.app';
+  
+    const checkoutSession = await fetch(`${redirectURL}/api/stripe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ cartItems: payload }), // Send cartItems as the payload
     });
-
-    const checkoutSession = await checkoutSessionResponse.json();
-    const sessionID = checkoutSession.sessionId;
+  
+    const session = await checkoutSession.json();
+  
     const result = await stripe?.redirectToCheckout({
-      sessionId: sessionID,
+      sessionId: session.sessionId,
     });
     if (result?.error) {
       alert(result.error.message);
     }
     setLoading(false);
   };
+  
+  
 
   return (
     <div className="bg-white">
@@ -91,7 +131,7 @@ const Cart = () => {
                       Subtotal
                     </div>
                     <div className="text-md md:text-lg font-medium text-black">
-                      &#8377; {subTotal}
+                    € {subTotal}
                     </div>
                   </div>
                   <div className="text-sm md:text-md py-5 border-t mt-5">
@@ -105,7 +145,7 @@ const Cart = () => {
                 {/* BUTTON START */}
                 <button
                   className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center"
-                  onClick={() => makePaymentRequest({ item })}
+                  onClick={() => makePaymentRequest( cartItems )}
                 >
                   Checkout
                   {loading && <img src="/images/spinner.svg" alt="spinner" />}

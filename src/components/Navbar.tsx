@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
 
         <Link href={"/cart"}>
-          <div className="ml-auto hidden lg:flex">
+          <div className="ml-auto flex">
             <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
               <BsCart className="text-[15px] md:text-[20px]" />
               <div className="h-[10px] md:h-[14px] min-w-[10px] md:min-w-[14px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[8px] flex justify-center items-center px-[2px] md:px-[5px]">

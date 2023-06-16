@@ -31,7 +31,7 @@ const ProductCart: FC<{ product: any }> = ({ product }) => {
         />
       </Link>
       <div className="text-lg">{product.name}</div>
-      <p className="text-lg font-bold pb-2">&#8377; {product.price}</p>
+      <p className="text-lg font-bold pb-2">€ {product.price}</p>
       <Link href={`/products/${product._id}`}>
       <button
         // onClick={handleAddToCart}
