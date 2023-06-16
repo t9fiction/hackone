@@ -13,62 +13,21 @@ const Cart = () => {
   const subTotal = useMemo(() => {
     return cartItems.reduce((total, val) => total + val.price, 0);
   }, [cartItems]);
-  console.log(cartItems, "cartitems in cart");
-  const [item, setItem] = useState({
-    name: "Apple AirPods",
-    description: "Latest Apple AirPods.",
-    image:
-      "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
-    quantity: 1,
-    price: 999,
-  });
+  // const [item, setItem] = useState({
+  //   name: "Apple AirPods",
+  //   description: "Latest Apple AirPods.",
+  //   image:
+  //     "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
+  //   quantity: 1,
+  //   price: 999,
+  // });
 
   // Stripe
   const publishableKey = process.env
     .NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
   const stripePromise = loadStripe(publishableKey);
 
-  // const redirectURL =
-  //   process.env.NODE_ENV === "development"
-  //     ? "http://localhost:3000"
-  //     : "https://hackathon-one-tau.vercel.app";
-  
-  /**
-   * 
-   * Working with single Item
-   * 
-   */
-  // const makePaymentRequest = async (payload: any) => {
-  //   setLoading(true);
-  //   const stripe = await stripePromise;
-
-  //   console.log(payload, "payload");
-
-  //   const checkoutSessionResponse = await fetch(`https://hackathon-one-tau.vercel.app/api/stripe`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(payload),
-  //   });
-
-  //   const checkoutSession = await checkoutSessionResponse.json();
-  //   const sessionID = checkoutSession.sessionId;
-  //   const result = await stripe?.redirectToCheckout({
-  //     sessionId: sessionID,
-  //   });
-  //   if (result?.error) {
-  //     alert(result.error.message);
-  //   }
-  //   setLoading(false);
-  // };
-
-  /**
-   * 
-   * End of single Item functionality
-   * 
-   */
-  const makePaymentRequest = async (payload: any) => {
+    const makePaymentRequest = async (payload: any) => {
     setLoading(true);
     const stripe = await stripePromise;
 
