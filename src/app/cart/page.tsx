@@ -27,15 +27,16 @@ const Cart = () => {
     .NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
   const stripePromise = loadStripe(publishableKey);
 
-    const makePaymentRequest = async (payload: any) => {
+  const makePaymentRequest = async (payload: any) => {
     setLoading(true);
     const stripe = await stripePromise;
 
     const redirectURL =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : 'https://hackathon-one-tau.vercel.app';
-  
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : "https://hackathon-one-tau.vercel.app";
+
+    await entryDB();
     const checkoutSession = await fetch(`${redirectURL}/api/stripe`, {
       method: "POST",
       headers: {
@@ -43,9 +44,9 @@ const Cart = () => {
       },
       body: JSON.stringify({ cartItems: payload }), // Send cartItems as the payload
     });
-  
+
     const session = await checkoutSession.json();
-  
+
     const result = await stripe?.redirectToCheckout({
       sessionId: session.sessionId,
     });
@@ -54,8 +55,26 @@ const Cart = () => {
     }
     setLoading(false);
   };
-  
-  
+
+  const entryDB = async () => {
+    try {
+      console.log("cartItems", cartItems);
+      const res = await fetch("/api/cart", {
+        method: "POST",
+        body: JSON.stringify({
+          cartItems: cartItems,
+        }),
+      });
+
+      const result = await res.json();
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+    }
+  };
+
+  /**
+   * End of the Database addition
+   */
 
   return (
     <div className="bg-white">
@@ -90,7 +109,7 @@ const Cart = () => {
                       Subtotal
                     </div>
                     <div className="text-md md:text-lg font-medium text-black">
-                    € {subTotal}
+                      € {subTotal}
                     </div>
                   </div>
                   <div className="text-sm md:text-md py-5 border-t mt-5">
@@ -104,7 +123,7 @@ const Cart = () => {
                 {/* BUTTON START */}
                 <button
                   className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center"
-                  onClick={() => makePaymentRequest( cartItems )}
+                  onClick={() => makePaymentRequest(cartItems)}
                 >
                   Checkout
                   {loading && <img src="/images/spinner.svg" alt="spinner" />}

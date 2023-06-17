@@ -5,21 +5,7 @@ import { urlFor } from "@/functions/allfunction";
 import Link from "next/link";
 
 const ProductCart: FC<{ product: any }> = ({ product }) => {
-  const handleAddToCart = async () => {
-    try {
-      const res = await fetch("/api/cart", {
-        method: "POST",
-        body: JSON.stringify({
-          product_id: product._id,
-        }),
-      });
-
-      const result = await res.json();
-    } catch (error) {
-      console.error("Error parsing JSON:", error);
-    }
-  };
-
+  
   return (
     <>
       <Link href={`/products/${product._id}`}>
